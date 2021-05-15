@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../includes/header.ejs %>
+</head>
+<body>
+  <% include ../includes/nav.ejs %>
+  <div class="container">
+    <h2><%= title %></h2>
+    <div class="library-view">
+      <div class="create-view">
+        <h3>Add Book</h3>
+          <form action="library/create-book" method="POST">
+            <div class="form-group">
+              <label for="title">Title*:</label>
+              <input type="text" class="form-control" name="title" required>
+            </div>
+            <div class="form-group">
+              <label for="summary">Summary:</label>
+              <textarea type="text" class="form-control" name="summary" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="author">Author *:</label>
+              <input type="text" class="form-control" name="author" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Cover Image Url:</label>
+              <input type="text" class="form-control" name="cover_url">
+            </div>
+            <button type="submit" class="btn btn-default">Save</button>
+          </form>
+      </div>
+      <div class="book-view">
+        <h4>(Hover to View Summary)</h4>
+        <div class="books-view">
+          <% for(var i=0; i < books.length; i++) { %>
+            <div class="book" data-toggle="tooltip" data-placement="top" title="<%= books[i].summary %>">
+              <img class="book-image" src="<%= books[i].cover_url %>" object-fit="cover" alt="No image">
+              <div class="book-title"><%= books[i].title %></div>
+              <div class="book-author"><%= books[i].author %></div>
+            </div>
+         <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
